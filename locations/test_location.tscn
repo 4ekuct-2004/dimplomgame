@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://3njclpaoab25"]
+
+[ext_resource type="PackedScene" uid="uid://xogtodkg1yc5" path="res://creatures/player/player.tscn" id="1_mtyye"]
+[ext_resource type="PackedScene" uid="uid://cy460aimk0j4e" path="res://creatures/dummy/dummy.tscn" id="2_863mx"]
+
+[node name="test_location" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_mtyye")]
+position = Vector2(361, 294)
+allowed_states = Array[String](["idle", "walk", "attack"])
+
+[node name="dummy" parent="." instance=ExtResource("2_863mx")]
+position = Vector2(532, 290)

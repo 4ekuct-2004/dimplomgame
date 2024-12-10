@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://cy460aimk0j4e"]
+
+[ext_resource type="Script" path="res://creatures/dummy/dummy.gd" id="1_ul023"]
+[ext_resource type="Texture2D" uid="uid://chqsagrqlivgv" path="res://assets/characters/Tiny RPG Character Asset Pack v1.03b -Free Soldier&Orc/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Orc/Orc/Orc-Idle.png" id="1_xsa1p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r0bjk"]
+radius = 6.38245
+height = 17.1332
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4esf"]
+atlas = ExtResource("1_xsa1p")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guslp"]
+atlas = ExtResource("1_xsa1p")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uch6g"]
+atlas = ExtResource("1_xsa1p")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p27ux"]
+atlas = ExtResource("1_xsa1p")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_is5dy"]
+atlas = ExtResource("1_xsa1p")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6righ"]
+atlas = ExtResource("1_xsa1p")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6cn0l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4esf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_guslp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uch6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p27ux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_is5dy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6righ")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67ijr"]
+radius = 2.06301
+height = 11.2441
+
+[node name="dummy" type="CharacterBody2D"]
+script = ExtResource("1_ul023")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CapsuleShape2D_r0bjk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_6cn0l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5.21033)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_67ijr")
