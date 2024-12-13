@@ -7,7 +7,7 @@ class_name WeaponModule
 
 signal attack_s()
 
-var orbit_distance = 50 + weapon.orbit_range_correction
+var orbit_distance = 10 + weapon.orbit_range_correction
 
 func _ready() -> void:
 	attack_s.connect(attack)

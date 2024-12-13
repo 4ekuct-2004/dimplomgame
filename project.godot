@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="DimplomGame"
-run/main_scene="res://locations/test_location.tscn"
+run/main_scene="res://debug/inv_test_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1200
+window/size/viewport_height=800
 
 [input]
 

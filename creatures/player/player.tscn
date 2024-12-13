@@ -176,5 +176,4 @@ theme_override_font_sizes/font_size = 8
 text = "говно"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 zoom = Vector2(3, 3)

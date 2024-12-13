@@ -33,7 +33,7 @@ var dispersion = 0.01
 var type: Types = Types.range
 var dmg_type: DamageTypes = DamageTypes.penetrating
 
-var orbit_range_correction = -25
+var orbit_range_correction = 0
 
 var projectile_speed = 300
 
