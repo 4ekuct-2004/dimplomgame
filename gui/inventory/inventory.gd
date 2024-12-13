@@ -9,15 +9,15 @@ var panel = Panel.new()
 
 var cell_min_size: Vector2
 
-func _init(contr_size: Vector2 = Vector2(100, 100), inv_size: Vector2 = Vector2(5, 5), 
-			grid_separator: int = 3, panel_margin: int = 10, items: Array[Item] = []):
+func _init(inv_size: Vector2 = Vector2(5, 5), contr_size: Vector2 = Vector2(100, 100), 
+			grid_separator: int = 3, panel_margin: int = 10, inv_name: String = "INVENTORY", items: Array[Item] = []):
 	
 	var usable_width = contr_size.x - 2 * panel_margin - grid_separator * (inv_size.x - 1)
 	var usable_height = contr_size.y - 2 * panel_margin - grid_separator * (inv_size.y - 1)
 	cell_min_size = Vector2(usable_width / inv_size.x, usable_height / inv_size.y)
 	
 	size = contr_size
-
+	
 	grid.columns = inv_size.x
 	grid.size = size - Vector2(panel_margin, panel_margin)
 	grid.position = Vector2(panel_margin, panel_margin)
