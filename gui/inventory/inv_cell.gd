@@ -3,7 +3,7 @@ class_name InvCell
 
 var inv : Inventory
 
-var cell_empty_texture = preload("res://assets/gui/inv_cell_empty.png")
+var cell_empty_texture = preload("res://assets/gui/inv/inv_cell_empty.png")
 
 var contains : Item
 
