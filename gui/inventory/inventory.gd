@@ -4,6 +4,13 @@ class_name Inventory
 var cells: Array
 var cell_focused: InvCell
 
+var cell_size : Vector2
+var inv_name : String
+var inv_size : Vector2
+var contr_size : Vector2
+var grid_separator : int
+var panel_margin : int
+
 var grid = GridContainer.new()
 var panel = Panel.new()
 
@@ -11,6 +18,12 @@ var name_panel = Panel.new()
 var name_label = Label.new()
 
 var cell_min_size: Vector2
+
+var name_panel_min_size = 30
+var name_panel_max_size = 50
+
+var font_min_size = 25
+var font_max_size = 45
 
 func _init(cell_size: Vector2 = Vector2(100, 100), inv_name: String = "INVENTORY", inv_size: Vector2 = Vector2(5, 5), contr_size: Vector2 = Vector2(100, 100), 
 			grid_separator: int = 3, panel_margin: int = 10, items: Array[Item] = []):
@@ -25,7 +38,13 @@ func _init(cell_size: Vector2 = Vector2(100, 100), inv_name: String = "INVENTORY
 		size = Vector2((inv_size.x * cell_size.x) + (grid_separator * (inv_size.x - 1)) + (panel_margin * 2), 
 					(inv_size.y * cell_size.y) + (grid_separator * (inv_size.y - 1)) + (panel_margin * 2))
 
-	
+	self.cell_size = cell_size
+	self.inv_name = inv_name
+	self.inv_size = inv_size
+	self.contr_size = contr_size
+	self.grid_separator = grid_separator
+	self.panel_margin = panel_margin
+
 	grid.columns = inv_size.x
 	grid.size = size - Vector2(panel_margin, panel_margin)
 	grid.position = Vector2(panel_margin, panel_margin)
@@ -39,14 +58,19 @@ func _init(cell_size: Vector2 = Vector2(100, 100), inv_name: String = "INVENTORY
 
 	if not name == null or not name == "":
 		name_panel.add_theme_stylebox_override("panel", panel_style_box)
-		name_panel.size = Vector2(size.x / 2, size.y / 100 * 5)
+
+		if size.y / 100 * 5 < name_panel_min_size: name_panel.size = Vector2(size.x / 2, name_panel_min_size)
+		elif size.y / 100 * 5 > name_panel_max_size: name_panel.size = Vector2(size.x / 2, name_panel_max_size)
+		else: name_panel.size = Vector2(size.x / 2, size.y / 100 * 5)
 		name_panel.position = Vector2(self.size.x / 4, -name_panel.size.y)
 
 		name_label.text = inv_name
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		name_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 		name_label.size = name_panel.size
-		name_label.add_theme_font_size_override("font_size", name_panel.size.y - 5)
+		if name_panel.size.y - 5 < font_min_size: name_label.add_theme_font_size_override("font_size", font_min_size)
+		elif name_panel.size.y - 5 > font_max_size: name_label.add_theme_font_size_override("font_size", font_max_size)
+		else: name_label.add_theme_font_size_override("font_size", name_panel.size.y - 5)
 
 		add_child(name_panel)
 		name_panel.add_child(name_label)

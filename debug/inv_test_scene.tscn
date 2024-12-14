@@ -4,3 +4,119 @@
 
 [node name="inv_test_scene" type="Node2D"]
 script = ExtResource("1_24bsq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 991.0
+offset_top = 616.0
+offset_right = 1199.0
+offset_bottom = 799.0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = -49.0
+offset_top = -15.0
+offset_right = 208.0
+offset_bottom = 183.0
+
+[node name="p_row" type="Button" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 47.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 13
+text = "+row"
+
+[node name="m_row" type="Button" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 48.0
+offset_right = 47.0
+offset_bottom = 87.0
+theme_override_font_sizes/font_size = 13
+text = "-row"
+
+[node name="p_col" type="Button" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 6.0
+offset_right = 92.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 13
+text = "+col"
+
+[node name="m_col" type="Button" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 48.0
+offset_right = 92.0
+offset_bottom = 87.0
+theme_override_font_sizes/font_size = 13
+text = "-col"
+
+[node name="name" type="TextEdit" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 6.0
+offset_right = 253.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 13
+text = "INVENTORY_NAME"
+
+[node name="change_name" type="Button" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 48.0
+offset_right = 253.0
+offset_bottom = 87.0
+theme_override_font_sizes/font_size = 13
+text = "change"
+
+[node name="new_row" type="TextEdit" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 97.0
+offset_right = 47.0
+offset_bottom = 136.0
+theme_override_font_sizes/font_size = 13
+text = "5"
+
+[node name="new_col" type="TextEdit" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 97.0
+offset_right = 92.0
+offset_bottom = 136.0
+theme_override_font_sizes/font_size = 13
+text = "5"
+
+[node name="new_inv" type="Button" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 154.0
+offset_right = 92.0
+offset_bottom = 193.0
+theme_override_font_sizes/font_size = 13
+text = "NEW INV"
+
+[node name="Label" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 136.0
+offset_right = 47.0
+offset_bottom = 154.0
+theme_override_font_sizes/font_size = 13
+text = "row"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 136.0
+offset_right = 92.0
+offset_bottom = 154.0
+theme_override_font_sizes/font_size = 13
+text = "col"
+horizontal_alignment = 1
