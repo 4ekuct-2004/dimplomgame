@@ -3,6 +3,7 @@ class_name Inventory
 
 var cells: Array
 var cell_focused: InvCell
+var items: Array[Item]
 
 var cell_size : Vector2
 var inv_name : String
@@ -44,6 +45,7 @@ func _init(cell_size: Vector2 = Vector2(100, 100), inv_name: String = "INVENTORY
 	self.contr_size = contr_size
 	self.grid_separator = grid_separator
 	self.panel_margin = panel_margin
+	self.items = items
 
 	grid.columns = inv_size.x
 	grid.size = size - Vector2(panel_margin, panel_margin)
@@ -78,14 +80,51 @@ func _init(cell_size: Vector2 = Vector2(100, 100), inv_name: String = "INVENTORY
 	add_child(panel)
 	
 	panel.add_child(grid)
+	
+	inv_update(true)
 
-	for i in range(inv_size.y):
-		var row = []
-		for j in range(inv_size.x):
-			var cell = InvCell.new(cell_min_size)
-			row.append(cell)
-			grid.add_child(cell)
-		cells.append(row)
+func add_item(item: Item):
+	items.append(item)
+	inv_update(false)
+
+func add_item_arr(n_items: Array[Item]):
+	for item in n_items:
+		items.append(item)
+	inv_update(false)
+
+func remove_item(item: Item):
+	items.erase(item)
+	inv_update(false)
+
+func inv_update(first: bool):
+	if first:
+		var non_sorted_items = items
+		for i in range(inv_size.y):
+			var row = []
+			for j in range(inv_size.x):
+				var cell = InvCell.new(cell_min_size)
+				if not non_sorted_items.is_empty():
+					var current_item = non_sorted_items.front()
+					print("item added " + current_item.item_name)
+					cell.item = current_item
+					non_sorted_items.erase(current_item)
+				cell.cell_update()
+				row.append(cell)
+				grid.add_child(cell)
+			cells.append(row)
+	else:
+		var non_sorted_items = items
+		for row in cells:
+			for cell in row:
+				cell.item = null
+				print(non_sorted_items)
+				if not non_sorted_items.is_empty():
+					var current_item = non_sorted_items.front()
+					print("item added " + current_item.item_name)
+					cell.item = current_item
+					non_sorted_items.erase(current_item)
+				cell.cell_update()
+	
 
 func inv_show():
 	pass

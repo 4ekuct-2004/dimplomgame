@@ -1,4 +1,4 @@
-extends Node2D
+extends Module
 class_name WeaponModule
 
 @export var creature: Creature

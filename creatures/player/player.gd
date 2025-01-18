@@ -6,14 +6,10 @@ class_name Player
 
 var prev_vel = Vector2.ZERO
 
-var inventory = Inventory.new()
-
 func _ready():
 	allowed_states = ["idle", "walk", "attacks", "on_cooldown"]
 	state_machine.state_switched.connect(on_state_switched)
 	state_machine.emit_signal("state_switched")
-
-	add_child(inventory)
 	
 
 func _process(delta):

@@ -1,4 +1,4 @@
-extends Node2D
+extends Module
 class_name PlayerMovingModule
 
 @export var creature: Creature

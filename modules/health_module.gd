@@ -1,4 +1,4 @@
-extends Node
+extends Module
 class_name HealthModule
 
 @export var creature: Creature

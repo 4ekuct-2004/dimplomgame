@@ -1,10 +1,10 @@
 extends CharacterBody2D
 class_name Creature
 
-@export var health_module: HealthModule
-@export var moving_module: PlayerMovingModule
-@export var state_machine: StateMachine
-@export var weapon_module: WeaponModule
+@export var health_module: Module
+@export var moving_module: Module
+@export var state_machine: Module
+@export var weapon_module: Module
 
 @export var allowed_states: Array[String]
 

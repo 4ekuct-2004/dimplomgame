@@ -1,4 +1,4 @@
-extends Node
+extends Module
 class_name StateMachine
 
 @export var creature: Creature
