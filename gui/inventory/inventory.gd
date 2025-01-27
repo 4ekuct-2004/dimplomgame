@@ -3,14 +3,17 @@ class_name Inventory
 
 var cells: Array
 var cell_focused: InvCell
+var cell_clicked: InvCell
 var items: Array[Item]
 
-var cell_size : Vector2
-var inv_name : String
-var inv_size : Vector2
-var contr_size : Vector2
-var grid_separator : int
-var panel_margin : int
+var cursor_container: Item
+
+var cell_size: Vector2
+var inv_name: String
+var inv_size: Vector2
+var contr_size: Vector2
+var grid_separator: int
+var panel_margin: int
 
 var grid = GridContainer.new()
 var panel = Panel.new()
@@ -102,10 +105,9 @@ func inv_update(first: bool):
 		for i in range(inv_size.y):
 			var row = []
 			for j in range(inv_size.x):
-				var cell = InvCell.new(cell_min_size)
+				var cell = InvCell.new(Vector2(j, i), cell_min_size)
 				if not non_sorted_items.is_empty():
 					var current_item = non_sorted_items.front()
-					print("item added " + current_item.item_name)
 					cell.item = current_item
 					non_sorted_items.erase(current_item)
 				cell.cell_update()
@@ -117,17 +119,13 @@ func inv_update(first: bool):
 		for row in cells:
 			for cell in row:
 				cell.item = null
-				print(non_sorted_items)
 				if not non_sorted_items.is_empty():
 					var current_item = non_sorted_items.front()
-					print("item added " + current_item.item_name)
 					cell.item = current_item
 					non_sorted_items.erase(current_item)
 				cell.cell_update()
 	
 
-func inv_show():
-	pass
-
-func inv_hide():
-	pass
+func _input(event: InputEvent) -> void:
+	if event is not InputEventMouseButton: return
+	# перетаскивание как нибудь сделать... наверное

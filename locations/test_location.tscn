@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://3njclpaoab25"]
+[gd_scene load_steps=8 format=3 uid="uid://3njclpaoab25"]
 
 [ext_resource type="PackedScene" uid="uid://xogtodkg1yc5" path="res://creatures/player/player.tscn" id="1_mtyye"]
 [ext_resource type="PackedScene" uid="uid://cy460aimk0j4e" path="res://creatures/dummy/dummy.tscn" id="2_863mx"]
@@ -10,6 +10,9 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0x7e"]
 bg_color = Color(0, 0, 0, 1)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3vatt"]
+blend_mode = 2
+
 [node name="test_location" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_mtyye")]
@@ -19,7 +22,6 @@ position = Vector2(492, 492)
 position = Vector2(609, 511)
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 256.0
@@ -48,15 +50,12 @@ texture = ExtResource("3_yp8bs")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="Control/Panel/GridContainer/TextureRect"]
+material = SubResource("CanvasItemMaterial_3vatt")
 layout_mode = 0
-offset_left = 3.0
-offset_top = 25.0
-offset_right = 87.0
-offset_bottom = 60.0
-theme_override_font_sizes/font_size = 25
-text = "АБОБА"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_right = 116.0
+offset_bottom = 95.0
+text = "drhehdrfhedrh"
+justification_flags = 160
 
 [node name="TextureRect6" type="TextureRect" parent="Control/Panel/GridContainer"]
 custom_minimum_size = Vector2(100, 100)
