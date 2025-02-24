@@ -45,6 +45,4 @@ func _physics_process(delta: float) -> void:
 	global_position += velocity * delta
 
 func body_entered(body):
-	if body is not Creature and body is not Dummy: return
-
-	if body is Dummy: body.take_damage(get_parent().damage)
+	if body is not Creature: return

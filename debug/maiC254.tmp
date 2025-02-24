@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://cnyujq05wwigu"]
+
+[ext_resource type="Texture2D" uid="uid://cqcv2n86ryyu0" path="res://assets/locations/s_tileset/wall.png" id="1_doxdi"]
+[ext_resource type="Texture2D" uid="uid://bkbt8ewbx2mol" path="res://assets/locations/s_tileset/floor.png" id="2_taw5o"]
+[ext_resource type="Script" path="res://debug/location_generator.gd" id="3_qpmel"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_13s76"]
+texture = ExtResource("1_doxdi")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dlbah"]
+texture = ExtResource("2_taw5o")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_yjhqq"]
+sources/0 = SubResource("TileSetAtlasSource_13s76")
+sources/1 = SubResource("TileSetAtlasSource_dlbah")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvuhs"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Location" type="TileMap"]
+tile_set = SubResource("TileSet_yjhqq")
+format = 2
+script = ExtResource("3_qpmel")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+offset_left = -1056.0
+offset_top = -545.0
+offset_right = 2472.0
+offset_bottom = 1470.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hvuhs")
