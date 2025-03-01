@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://d36ppgx04srlx"]
+
+[ext_resource type="Script" path="res://objects/creatures/dummy/dummy.gd" id="1_naa24"]
+[ext_resource type="Texture2D" uid="uid://chhqa4u6c7oct" path="res://assets/klipartz.com.png" id="2_cu3dc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_npc75"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qlbqk"]
+radius = 8.0
+
+[node name="Dummy" type="CharacterBody2D"]
+scale = Vector2(2.74957, 2.74957)
+script = ExtResource("1_naa24")
+
+[node name="Klipartz_com" type="Sprite2D" parent="."]
+position = Vector2(0, -0.999992)
+scale = Vector2(0.0167526, 0.0167526)
+texture = ExtResource("2_cu3dc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_npc75")
+
+[node name="Label" type="Label" parent="."]
+z_as_relative = false
+texture_filter = 1
+offset_left = -9.0
+offset_top = -19.0
+offset_right = 9.0
+offset_bottom = 3.0
+theme_override_font_sizes/font_size = 8
+text = "0"
+justification_flags = 0
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qlbqk")

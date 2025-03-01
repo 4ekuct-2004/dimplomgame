@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg0j8hv07riog"]
+
+[ext_resource type="PackedScene" uid="uid://c2l6768tqck1b" path="res://objects/creatures/player/Player.tscn" id="1_7knku"]
+[ext_resource type="PackedScene" uid="uid://d36ppgx04srlx" path="res://objects/creatures/dummy/dummy.tscn" id="2_gkiqh"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_7knku")]
+position = Vector2(49, 40)
+motion_mode = 1
+
+[node name="Dummy" parent="." instance=ExtResource("2_gkiqh")]
+position = Vector2(154, 43)

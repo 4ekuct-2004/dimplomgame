@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://c2l6768tqck1b"]
+
+[ext_resource type="Script" path="res://scripts/entities/creatures/player/player.gd" id="1_4glcb"]
+[ext_resource type="Texture2D" uid="uid://boyjiy7f25ii8" path="res://assets/characters/Characters(100x100)/Soldier/Soldier/Soldier-Idle.png" id="2_yt7uj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nna2c"]
+atlas = ExtResource("2_yt7uj")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfnup"]
+atlas = ExtResource("2_yt7uj")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rqsx"]
+atlas = ExtResource("2_yt7uj")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edhov"]
+atlas = ExtResource("2_yt7uj")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drsnr"]
+atlas = ExtResource("2_yt7uj")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvrkj"]
+atlas = ExtResource("2_yt7uj")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jbdgs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nna2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfnup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rqsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edhov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drsnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvrkj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4jgda"]
+radius = 2.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5suim"]
+radius = 9.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_4glcb")
+metadata/_edit_vertical_guides_ = [-50.0, 50.0]
+metadata/_edit_horizontal_guides_ = [50.0, -50.0]
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(3.8147e-06, -3.8147e-06)
+scale = Vector2(1.69, 1.69)
+sprite_frames = SubResource("SpriteFrames_jbdgs")
+animation = &"idle"
+
+[node name="collision_box" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4jgda")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="hitbox_area" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_5suim")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)

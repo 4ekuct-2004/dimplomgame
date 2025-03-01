@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://crvvsn2qq8sd4"]
+
+[ext_resource type="PackedScene" uid="uid://q4gtpus0jqf2" path="res://objects/weapons/weapon_akm.tscn" id="1_ujp1e"]
+[ext_resource type="Texture2D" uid="uid://clhbxrh05qwme" path="res://assets/items/GunsPack/Guns/Revolver.png" id="2_xp3ll"]
+
+[node name="weapon_revolver" instance=ExtResource("1_ujp1e")]
+fire_rate = 1.0
+position_offset = Vector2(15, 0)
+
+[node name="sprite" parent="." index="0"]
+position = Vector2(-1.19209e-07, -3.57628e-07)
+scale = Vector2(0.845791, 0.750409)
+texture = ExtResource("2_xp3ll")
+
+[node name="muzzle" parent="." index="1"]
+position = Vector2(6.91957, -1.95685)

@@ -6,8 +6,6 @@ var cell_focused: InvCell
 var cell_clicked: InvCell
 var items: Array[Item]
 
-var cursor_container: Item
-
 var cell_size: Vector2
 var inv_name: String
 var inv_size: Vector2
@@ -29,8 +27,8 @@ var name_panel_max_size = 50
 var font_min_size = 25
 var font_max_size = 45
 
-func _init(cell_size: Vector2 = Vector2(100, 100), inv_name: String = "INVENTORY", inv_size: Vector2 = Vector2(5, 5), contr_size: Vector2 = Vector2(100, 100), 
-			grid_separator: int = 3, panel_margin: int = 10, items: Array[Item] = []):
+func _init(inv_size: Vector2 = Vector2(5, 5), cell_size: Vector2 = Vector2(-1, -1), inv_name: String = "INVENTORY", contr_size: Vector2 = Vector2(100, 100), 
+			grid_separator: int = 1, panel_margin: int = 3, items: Array[Item] = []):
 	
 	if not cell_size or (cell_size.x <= 0 or cell_size.y <= 0):
 		var usable_width = contr_size.x - 2 * panel_margin - grid_separator * (inv_size.x - 1)
@@ -124,8 +122,9 @@ func inv_update(first: bool):
 					cell.item = current_item
 					non_sorted_items.erase(current_item)
 				cell.cell_update()
-	
 
-func _input(event: InputEvent) -> void:
-	if event is not InputEventMouseButton: return
-	# перетаскивание как нибудь сделать... наверное
+func get_mods_from_items():
+	var result = []
+	for item in items:
+		result.append(item.stat_modifier)
+	return result
