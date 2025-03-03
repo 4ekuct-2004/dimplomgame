@@ -12,16 +12,15 @@ gradient = SubResource("Gradient_x8o5u")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i8imj"]
 particle_flag_disable_z = true
-angle_min = 1.07288e-05
-angle_max = 170.3
+angle_min = -271.0
+angle_max = -100.7
 spread = 14.663
-initial_velocity_min = 80.64
-initial_velocity_max = 107.53
-gravity = Vector3(0, -20, 0)
+initial_velocity_min = 75.26
+initial_velocity_max = 102.15
+gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_6w8v6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ntpyq"]
-particle_flag_disable_z = true
 initial_velocity_max = 10.75
 gravity = Vector3(0, -30, 0)
 color = Color(0.281187, 0.281187, 0.281187, 1)
@@ -29,32 +28,33 @@ color = Color(0.281187, 0.281187, 0.281187, 1)
 [node name="weapon_akm" type="Node2D"]
 script = ExtResource("1_ar7oe")
 fire_rate = 0.1
-projectile_speed = 500.0
+projectile_speed = 1500.0
 projectile_scene = ExtResource("2_7gemr")
-position_offset = Vector2(5, 5)
+position_offset = Vector2(13, 1)
 is_automatic = true
-recoil_distance = 1.0
-base_spread_angle = 0.01
+recoil_distance = 2.0
+base_spread_angle = 0.03
 y_muzzle_compensator = 4
 metadata/_edit_vertical_guides_ = [-49.8318, 50.0673]
 metadata/_edit_horizontal_guides_ = [-50.2666, 50.4743]
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(1.08886, 0.966066)
+position = Vector2(-1.77421, -2.38419e-07)
+scale = Vector2(0.994527, 1.00745)
 texture = ExtResource("2_fuehk")
 
 [node name="muzzle" type="Marker2D" parent="."]
-position = Vector2(16.6037, -2.4969)
+position = Vector2(13.2929, -2.23203)
 scale = Vector2(1.57891, 1.40085)
 
 [node name="particles_muzzleflash" type="GPUParticles2D" parent="muzzle"]
 position = Vector2(0, 0.0157221)
 scale = Vector2(0.633348, 0.713852)
 emitting = false
-amount = 100
+amount = 20
 process_material = SubResource("ParticleProcessMaterial_i8imj")
-lifetime = 0.05
+lifetime = 0.02
 one_shot = true
 
 [node name="particles_smoke" type="GPUParticles2D" parent="muzzle"]
@@ -62,3 +62,4 @@ emitting = false
 amount = 14
 process_material = SubResource("ParticleProcessMaterial_ntpyq")
 one_shot = true
+randomness = 0.57

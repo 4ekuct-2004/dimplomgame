@@ -16,9 +16,5 @@ func _init(modifier_name: String, modifier: float, modifier_type: ModTypes) -> v
 	_modifier_type = modifier_type
 
 func modify(val: int) -> float:
-	if _modifier_type == ModTypes.FLAT: 
-		print(_modifier_name, ": ", str(val), " -> ", str(val + _modifier))
-		return val + _modifier
-	else: 
-		print(_modifier_name, ": ", str(val), " -> ", str(val * _modifier))
-		return val * _modifier
+	if _modifier_type == ModTypes.FLAT: return val + _modifier
+	else: return val * _modifier

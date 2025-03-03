@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bg0j8hv07riog"]
+[gd_scene load_steps=4 format=3 uid="uid://bg0j8hv07riog"]
 
 [ext_resource type="PackedScene" uid="uid://c2l6768tqck1b" path="res://objects/creatures/player/Player.tscn" id="1_7knku"]
 [ext_resource type="PackedScene" uid="uid://d36ppgx04srlx" path="res://objects/creatures/dummy/dummy.tscn" id="2_gkiqh"]
+[ext_resource type="PackedScene" uid="uid://crc811yggak8s" path="res://objects/creatures/enemies/ghost/enemy_ghost.tscn" id="3_2dnme"]
 
 [node name="Main" type="Node2D"]
 
@@ -11,3 +12,6 @@ motion_mode = 1
 
 [node name="Dummy" parent="." instance=ExtResource("2_gkiqh")]
 position = Vector2(154, 43)
+
+[node name="EnemyGhost" parent="." instance=ExtResource("3_2dnme")]
+position = Vector2(132, 108)

@@ -27,7 +27,7 @@ var name_panel_max_size = 50
 var font_min_size = 25
 var font_max_size = 45
 
-func _init(inv_size: Vector2 = Vector2(5, 5), cell_size: Vector2 = Vector2(-1, -1), inv_name: String = "INVENTORY", contr_size: Vector2 = Vector2(100, 100), 
+func _init(inv_size: Vector2 = Vector2(5, 5), cell_size: Vector2 = Vector2(-1, -1), inv_name: String = "", contr_size: Vector2 = Vector2(100, 100), 
 			grid_separator: int = 1, panel_margin: int = 3, items: Array[Item] = []):
 	
 	if not cell_size or (cell_size.x <= 0 or cell_size.y <= 0):
@@ -59,7 +59,7 @@ func _init(inv_size: Vector2 = Vector2(5, 5), cell_size: Vector2 = Vector2(-1, -
 	panel.add_theme_stylebox_override("panel", panel_style_box)
 	panel.size = size
 
-	if not name == null or not name == "":
+	if not name == null and not name == "":
 		name_panel.add_theme_stylebox_override("panel", panel_style_box)
 
 		if size.y / 100 * 5 < name_panel_min_size: name_panel.size = Vector2(size.x / 2, name_panel_min_size)

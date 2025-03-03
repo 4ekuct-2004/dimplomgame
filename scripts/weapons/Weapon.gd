@@ -56,6 +56,7 @@ func update_aim(mouse_position: Vector2, character_position: Vector2, character_
 	global_position = character_position + corrected_offset.rotated(global_rotation) + _current_recoil_offset
 
 func shoot(shooter: Node, trigger_pressed: bool):
+	if shooter.locked: return
 	_is_trigger_pressed = trigger_pressed
 	
 	if is_automatic:
@@ -80,7 +81,6 @@ func _perform_shoot(shooter: Node):
 	var shoot_direction = Vector2.RIGHT.rotated(rotation + spread_angle)
 	var inherited_velocity = shooter_velocity * velocity_inheritance
 	
-	print("===ATTK-DMG===")
 	var newdmg = damage
 	for mod in shooter.attack_mods:
 		newdmg = mod.modify(newdmg)

@@ -30,12 +30,12 @@ func _check_distance():
 
 func _on_body_entered(body: Node):
 	if body != shooter and body is Creature:
-		body.take_damage(damage)
+		body.take_damage(damage, shooter)
 		queue_free()
 
 
 func _on_area_entered(area: Area2D) -> void:
 	var body = area.get_parent()
 	if body != shooter and body is Creature:
-		body.take_damage(damage)
+		body.take_damage(damage, shooter)
 		queue_free()
