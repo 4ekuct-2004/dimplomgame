@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://clh6ub3tf3evr"]
+
+[ext_resource type="Script" uid="uid://b1p5om0a6cpr0" path="res://scripts/weapons/Weapon.gd" id="1_8j82t"]
+[ext_resource type="PackedScene" uid="uid://dix6wrcv0xpc2" path="res://objects/weapons/projectiles/ghost_shot.tscn" id="2_fnkmv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_leys4"]
+bg_color = Color(0.172833, 0.172833, 0.172833, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Gradient" id="Gradient_7bam3"]
+colors = PackedColorArray(0.41598, 0.41598, 0.41598, 1, 0.823387, 0.000538679, 0.824264, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w35mq"]
+gradient = SubResource("Gradient_7bam3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iyewe"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 5, 5)
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 60.205
+gravity = Vector3(0, 0, 0)
+color = Color(0.786742, 0.000484195, 0.787353, 1)
+color_ramp = SubResource("GradientTexture1D_w35mq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ub7io"]
+initial_velocity_max = 10.75
+gravity = Vector3(0, -30, 0)
+color = Color(0.281187, 0.281187, 0.281187, 1)
+
+[node name="GhostHand" type="Node2D"]
+script = ExtResource("1_8j82t")
+damage = 1.0
+projectile_speed = 150.0
+projectile_scene = ExtResource("2_fnkmv")
+position_offset = Vector2(20, 0)
+is_automatic = true
+damage_type = 2
+metadata/_custom_type_script = "uid://b1p5om0a6cpr0"
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -4.0
+offset_top = -5.0
+offset_right = 4.0
+offset_bottom = 6.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_leys4")
+
+[node name="muzzle" type="Marker2D" parent="."]
+position = Vector2(2, 0)
+scale = Vector2(1.57891, 1.40085)
+
+[node name="particles_muzzleflash" type="GPUParticles2D" parent="muzzle"]
+position = Vector2(0, 0.0157221)
+scale = Vector2(0.633348, 0.713852)
+emitting = false
+amount = 20
+lifetime = 0.2
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_iyewe")
+
+[node name="particles_smoke" type="GPUParticles2D" parent="muzzle"]
+emitting = false
+amount = 14
+lifetime = 0.1
+one_shot = true
+randomness = 0.57
+process_material = SubResource("ParticleProcessMaterial_ub7io")

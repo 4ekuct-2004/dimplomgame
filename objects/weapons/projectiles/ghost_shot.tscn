@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://dix6wrcv0xpc2"]
+
+[ext_resource type="Script" uid="uid://dq6gdf1vob26v" path="res://scripts/weapons/Projectile.gd" id="1_76n5v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wohhi"]
+radius = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhfwy"]
+bg_color = Color(0.461429, 0.00603353, 0.482417, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Gradient" id="Gradient_7bam3"]
+colors = PackedColorArray(0.41598, 0.41598, 0.41598, 1, 0.823387, 0.000538679, 0.824264, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_76n5v"]
+gradient = SubResource("Gradient_7bam3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iyewe"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 5, 5)
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_max = 17.24
+gravity = Vector3(0, 0, 0)
+color = Color(0.786742, 0.000484195, 0.787353, 1)
+color_ramp = SubResource("GradientTexture1D_76n5v")
+
+[node name="GhostShot" type="Area2D"]
+script = ExtResource("1_76n5v")
+speed = 200.0
+metadata/_custom_type_script = "uid://dq6gdf1vob26v"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wohhi")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hhfwy")
+
+[node name="particles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 0.0157221)
+scale = Vector2(0.633348, 0.713852)
+amount = 40
+lifetime = 0.95
+collision_base_size = 0.0
+process_material = SubResource("ParticleProcessMaterial_iyewe")

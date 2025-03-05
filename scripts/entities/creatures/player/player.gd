@@ -4,14 +4,12 @@ class_name Player
 var inv = Inventory.new(Vector2(2, 3))
 var weapons = [load("res://objects/weapons/weapon_akm.tscn").instantiate(), load("res://objects/weapons/weapon_revolver.tscn").instantiate()]
 
-@onready var current_weapon = weapons[0]
+@onready var weapon = weapons[0]
 @onready var sprite = $sprite
 
 var mouse_pos = Vector2.ZERO
 var lmb_pressed = false
 var locked = false
-
-var attack_mods: Array[Modifier]
 
 func _ready() -> void:
 	base_stats = {
@@ -23,14 +21,12 @@ func _ready() -> void:
 		"acceleration" = 3000,
 		"friction" = 1500
 	}
-	add_child(current_weapon)
-	add_child(inv)
+	add_child(weapon)
+	add_child(inv)      
 	inv.hide()
-	print(get_viewport_rect().size)
-	inv.position = Vector2((-get_viewport_rect().size.x/2)/3, -100)
-	print(inv.position)
+	inv.position = Vector2((-get_viewport_rect().size.x/2/3), -100)
 	
-	attack_mods.append(Modifier.new("double_damage", 2, Modifier.ModTypes.PERCENT))
+	attack_mods.append(Modifier.new("double_damage", 2, Modifier.ModTypes.PERCENT, [Modifier.DamageTypes.ALL]))
 	
 	can_interaction = false
 
@@ -55,24 +51,19 @@ func moving_process(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, additional_stats["friction"] * delta)
 
 func weapon_process(delta):
-	if not current_weapon: return
+	if not weapon: return
 	
-	current_weapon.update_aim(mouse_pos, global_position, velocity)
+	weapon.update_aim(mouse_pos, global_position, velocity)
 
 func _input(event):
-	if current_weapon:
+	if weapon:
 		if event.is_action_pressed("LMB"):
-			current_weapon.shoot(self, true)
+			weapon.shoot(self, true)
 		if event.is_action_released("LMB"):
-			current_weapon.shoot(self, false)
-		if event.is_action_pressed("UMW"):
-			remove_child(current_weapon)
-			current_weapon = weapons.back()
-			add_child(current_weapon)
-		if event.is_action_pressed("DMW"):
-			remove_child(current_weapon)
-			current_weapon = weapons.front()
-			add_child(current_weapon)
+			weapon.shoot(self, false)
+
+		if event.is_action_pressed("UMW"): switch_weapon(weapon, weapons.back())
+		elif event.is_action_pressed("DMW"): switch_weapon(weapon, weapons.front())
 	if event.is_action_pressed("space"):
 		if inv.visible: 
 			inv.hide()
@@ -82,3 +73,8 @@ func _input(event):
 			inv.show()
 			locked = true
 			sprite.pause()
+
+func switch_weapon(old_weapon, new_weapon):
+	remove_child(old_weapon)
+	weapon = new_weapon
+	add_child(weapon)

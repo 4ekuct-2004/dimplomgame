@@ -1,4 +1,5 @@
 extends Area2D
+class_name Projectile
 
 @export var speed: float = 1000.0
 @export var max_distance: float = 2000.0
@@ -7,6 +8,11 @@ var velocity: Vector2 = Vector2.ZERO
 var damage: float = 10.0
 var shooter: Node = null
 var _shooter_initial_pos: Vector2
+
+func _ready() -> void:
+	if body_entered.is_connected(_on_body_entered): return
+	body_entered.connect(_on_body_entered)
+	area_entered.connect(_on_area_entered)
 
 func initialize(base_velocity: Vector2, dmg: float, owner: Node):
 	velocity = base_velocity
@@ -29,13 +35,12 @@ func _check_distance():
 			queue_free()
 
 func _on_body_entered(body: Node):
-	if body != shooter and body is Creature:
+	if is_instance_valid(shooter) and body != shooter and body is Creature:
 		body.take_damage(damage, shooter)
 		queue_free()
 
-
 func _on_area_entered(area: Area2D) -> void:
 	var body = area.get_parent()
-	if body != shooter and body is Creature:
+	if is_instance_valid(shooter) and body != shooter and body is Player:
 		body.take_damage(damage, shooter)
 		queue_free()

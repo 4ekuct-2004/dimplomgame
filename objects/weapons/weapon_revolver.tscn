@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://clhbxrh05qwme" path="res://assets/items/GunsPack/Guns/Revolver.png" id="2_xp3ll"]
 
 [node name="weapon_revolver" instance=ExtResource("1_ujp1e")]
-fire_rate = 1.0
+fire_rate = 0.5
 position_offset = Vector2(15, 0)
 
 [node name="sprite" parent="." index="0"]

@@ -1,0 +1,206 @@
+[gd_scene load_steps=23 format=3 uid="uid://crc811yggak8s"]
+
+[ext_resource type="Script" uid="uid://dl4n4sa8mklho" path="res://objects/creatures/npc/enemies/Enemy.gd" id="1_e7s50"]
+[ext_resource type="PackedScene" uid="uid://clh6ub3tf3evr" path="res://objects/weapons/ghost_hand.tscn" id="2_lu53m"]
+[ext_resource type="Texture2D" uid="uid://cw5x7jx87p3dd" path="res://assets/characters/Characters(100x100)/Soldier/Soldier/ghost.png" id="2_rpt0o"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dr3ub"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5q74e"]
+atlas = ExtResource("2_rpt0o")
+region = Rect2(0, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfs3v"]
+atlas = ExtResource("2_rpt0o")
+region = Rect2(100, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnp7u"]
+atlas = ExtResource("2_rpt0o")
+region = Rect2(200, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5elx6"]
+atlas = ExtResource("2_rpt0o")
+region = Rect2(300, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gol4o"]
+atlas = ExtResource("2_rpt0o")
+region = Rect2(400, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f7b0"]
+atlas = ExtResource("2_rpt0o")
+region = Rect2(500, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suydo"]
+atlas = ExtResource("2_rpt0o")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yt4q"]
+atlas = ExtResource("2_rpt0o")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yusho"]
+atlas = ExtResource("2_rpt0o")
+region = Rect2(500, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7scey"]
+atlas = ExtResource("2_rpt0o")
+region = Rect2(600, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v411g"]
+atlas = ExtResource("2_rpt0o")
+region = Rect2(700, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wy5c"]
+atlas = ExtResource("2_rpt0o")
+region = Rect2(0, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_da7kt"]
+atlas = ExtResource("2_rpt0o")
+region = Rect2(100, 100, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tl0ow"]
+animations = [{
+"frames": [{
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_5q74e")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_lfs3v")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_mnp7u")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_5elx6")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_gol4o")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_7f7b0")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suydo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yt4q")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_yusho")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_7scey")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_v411g")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_6wy5c")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_da7kt")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_da7kt")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_6wy5c")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_v411g")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_7scey")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lu53m"]
+radius = 193.093
+
+[sub_resource type="Gradient" id="Gradient_lu53m"]
+colors = PackedColorArray(0.41598, 0.41598, 0.41598, 1, 0.823387, 0.000538679, 0.824264, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w35mq"]
+gradient = SubResource("Gradient_lu53m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dgkxu"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(10, 20, 5)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 50, 0)
+spread = 180.0
+initial_velocity_max = 25.02
+gravity = Vector3(0, 50, 0)
+color = Color(0.786742, 0.000484195, 0.787353, 1)
+color_ramp = SubResource("GradientTexture1D_w35mq")
+
+[node name="EnemyGhost" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "vision_area", "hitbox", "collision", "blood_particles")]
+script = ExtResource("1_e7s50")
+attack_type = 1
+behavior_type = 1
+circle_speed = 100.0
+circle_radius = 100.0
+retreat_multiplier = 0.7
+animated_sprite = NodePath("sprite")
+vision_area = NodePath("vision_radius")
+hitbox = NodePath("vision_radius")
+collision = NodePath("collision_box")
+attack_radius = 200.0
+weapon_sc = ExtResource("2_lu53m")
+blood_particles = NodePath("blood_particles")
+base_stats = {
+&"armor": 0,
+&"max_hp": 100,
+&"move_speed": 100
+}
+additional_stats = {
+&"acceleration": 1000,
+&"friction": 1000
+}
+NAME = "enemy_ghost"
+
+[node name="collision_box" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dr3ub")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(-2, -3)
+scale = Vector2(1.94932, 2.10737)
+sprite_frames = SubResource("SpriteFrames_tl0ow")
+animation = &"dead"
+autoplay = "idle"
+
+[node name="vision_radius" type="Area2D" parent="."]
+
+[node name="vision" type="CollisionShape2D" parent="vision_radius"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_lu53m")
+
+[node name="blood_particles" type="GPUParticles2D" parent="."]
+position = Vector2(0, -9)
+scale = Vector2(0.633348, 0.713852)
+emitting = false
+amount = 100
+lifetime = 0.95
+interp_to_end = 0.255
+one_shot = true
+speed_scale = 2.0
+collision_base_size = 0.0
+process_material = SubResource("ParticleProcessMaterial_dgkxu")

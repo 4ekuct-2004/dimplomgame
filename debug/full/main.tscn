@@ -2,16 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://c2l6768tqck1b" path="res://objects/creatures/player/Player.tscn" id="1_7knku"]
 [ext_resource type="PackedScene" uid="uid://d36ppgx04srlx" path="res://objects/creatures/dummy/dummy.tscn" id="2_gkiqh"]
-[ext_resource type="PackedScene" uid="uid://crc811yggak8s" path="res://objects/creatures/enemies/ghost/enemy_ghost.tscn" id="3_2dnme"]
+[ext_resource type="PackedScene" uid="uid://crc811yggak8s" path="res://objects/creatures/npc/enemies/ghost/enemy_ghost.tscn" id="3_2dnme"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_7knku")]
-position = Vector2(49, 40)
+position = Vector2(254, 38)
 motion_mode = 1
 
 [node name="Dummy" parent="." instance=ExtResource("2_gkiqh")]
 position = Vector2(154, 43)
 
 [node name="EnemyGhost" parent="." instance=ExtResource("3_2dnme")]
-position = Vector2(132, 108)
+position = Vector2(-153, 73)
+
+[node name="EnemyGhost2" parent="." instance=ExtResource("3_2dnme")]
+position = Vector2(-84, 257)
+
+[node name="EnemyGhost3" parent="." instance=ExtResource("3_2dnme")]
+position = Vector2(-156, -89)

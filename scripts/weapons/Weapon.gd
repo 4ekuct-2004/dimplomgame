@@ -17,6 +17,8 @@ class_name Weapon
 
 @export var y_muzzle_compensator = 0
 
+@export var damage_type: Modifier.DamageTypes
+
 @onready var sprite = $sprite
 @onready var muzzle: Marker2D = $muzzle
 @onready var particles_muzzleflash = $muzzle/particles_muzzleflash
@@ -44,19 +46,19 @@ func _ready():
 func update_aim(mouse_position: Vector2, character_position: Vector2, character_velocity: Vector2):
 	var direction = (mouse_position - character_position).normalized()
 	var is_facing_left = direction.x < 0
-	
-	sprite.flip_v = is_facing_left
 	var corrected_offset = _base_offset
-	if is_facing_left:
-		corrected_offset.y = -_base_offset.y
-		muzzle.position.y = _base_muzzle_pos.y + y_muzzle_compensator
-	else: muzzle.position.y = _base_muzzle_pos.y
+	
+	if sprite:
+		sprite.flip_v = is_facing_left
+		if is_facing_left:
+			corrected_offset.y = -_base_offset.y
+			muzzle.position.y = _base_muzzle_pos.y + y_muzzle_compensator
+		else: muzzle.position.y = _base_muzzle_pos.y
 	
 	global_rotation = direction.angle()
 	global_position = character_position + corrected_offset.rotated(global_rotation) + _current_recoil_offset
 
 func shoot(shooter: Node, trigger_pressed: bool):
-	if shooter.locked: return
 	_is_trigger_pressed = trigger_pressed
 	
 	if is_automatic:
@@ -83,7 +85,7 @@ func _perform_shoot(shooter: Node):
 	
 	var newdmg = damage
 	for mod in shooter.attack_mods:
-		newdmg = mod.modify(newdmg)
+		newdmg = mod.modify(newdmg, damage_type)
 	
 	projectile.global_position = muzzle.global_position
 	projectile.initialize(

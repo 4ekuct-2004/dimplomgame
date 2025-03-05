@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d36ppgx04srlx"]
 
-[ext_resource type="Script" path="res://objects/creatures/dummy/dummy.gd" id="1_naa24"]
+[ext_resource type="Script" uid="uid://c5vivrham771n" path="res://objects/creatures/dummy/dummy.gd" id="1_naa24"]
 [ext_resource type="Texture2D" uid="uid://chhqa4u6c7oct" path="res://assets/klipartz.com.png" id="2_cu3dc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_npc75"]
@@ -56,6 +56,6 @@ shape = SubResource("CircleShape2D_qlbqk")
 position = Vector2(0, -2.90955)
 emitting = false
 amount = 50
-process_material = SubResource("ParticleProcessMaterial_2hs2q")
-one_shot = true
 interp_to_end = 0.055
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_2hs2q")

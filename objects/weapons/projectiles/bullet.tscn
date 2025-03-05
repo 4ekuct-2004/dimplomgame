@@ -1,16 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://dynplnhncq8ux"]
 
-[ext_resource type="Script" path="res://scripts/weapons/Projectile.gd" id="1_havfv"]
+[ext_resource type="Script" uid="uid://dq6gdf1vob26v" path="res://scripts/weapons/Projectile.gd" id="1_havfv"]
 [ext_resource type="Texture2D" uid="uid://c73qm38tsat87" path="res://assets/items/GunsPack/Bullets/PistolAmmoBig.png" id="2_xhkwy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4kjcr"]
-size = Vector2(3.625, 0.75)
+size = Vector2(5.8125, 2.375)
 
 [node name="bullet" type="Area2D"]
 script = ExtResource("1_havfv")
 
 [node name="sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.109375, 0.109375)
+position = Vector2(0.53125, -1.19209e-07)
+scale = Vector2(0.308594, 0.242187)
 texture = ExtResource("2_xhkwy")
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
