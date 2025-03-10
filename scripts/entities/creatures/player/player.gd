@@ -1,11 +1,12 @@
 extends Creature
 class_name Player
 
-var inv = Inventory.new(Vector2(2, 3))
-var weapons = [load("res://objects/weapons/weapon_akm.tscn").instantiate(), load("res://objects/weapons/weapon_revolver.tscn").instantiate()]
+var inv = Inventory.new(-1)
+var weapons = [load("res://objects/weapons/weapon_akm.tscn").instantiate(), load("res://objects/weapons/weapon_revolver.tscn").instantiate(), load("res://objects/weapons/weapon_showel.tscn").instantiate()]
 
 @onready var weapon = weapons[0]
 @onready var sprite = $sprite
+@onready var camera = $Camera2D
 
 var mouse_pos = Vector2.ZERO
 var lmb_pressed = false
@@ -22,13 +23,8 @@ func _ready() -> void:
 		"friction" = 1500
 	}
 	add_child(weapon)
-	add_child(inv)      
-	inv.hide()
-	inv.position = Vector2((-get_viewport_rect().size.x/2/3), -100)
 	
-	attack_mods.append(Modifier.new("double_damage", 2, Modifier.ModTypes.PERCENT, [Modifier.DamageTypes.ALL]))
-	
-	can_interaction = false
+	attack_mods.append(Modifier.new("double_damage", 2, Modifier.ModifyTypes.PERCENT, [Modifier.InputTypes.ALL]))
 
 func _physics_process(delta):
 	if locked: return
@@ -62,8 +58,10 @@ func _input(event):
 		if event.is_action_released("LMB"):
 			weapon.shoot(self, false)
 
-		if event.is_action_pressed("UMW"): switch_weapon(weapon, weapons.back())
-		elif event.is_action_pressed("DMW"): switch_weapon(weapon, weapons.front())
+		if event.is_action_pressed("1"): switch_weapon(weapon, weapons[0])
+		elif event.is_action_pressed("2"): switch_weapon(weapon, weapons[1])
+		elif event.is_action_pressed("3"): switch_weapon(weapon, weapons[2])
+
 	if event.is_action_pressed("space"):
 		if inv.visible: 
 			inv.hide()

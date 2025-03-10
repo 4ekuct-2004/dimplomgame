@@ -1,23 +1,25 @@
 [gd_scene load_steps=4 format=3 uid="uid://bg0j8hv07riog"]
 
+[ext_resource type="Script" uid="uid://c7f8o3qdf25jm" path="res://debug/full/main.gd" id="1_0wlir"]
 [ext_resource type="PackedScene" uid="uid://c2l6768tqck1b" path="res://objects/creatures/player/Player.tscn" id="1_7knku"]
-[ext_resource type="PackedScene" uid="uid://d36ppgx04srlx" path="res://objects/creatures/dummy/dummy.tscn" id="2_gkiqh"]
-[ext_resource type="PackedScene" uid="uid://crc811yggak8s" path="res://objects/creatures/npc/enemies/ghost/enemy_ghost.tscn" id="3_2dnme"]
+[ext_resource type="Texture2D" uid="uid://dmgh7iusnvsjj" path="res://assets/locations/GROUND.png" id="3_iflv6"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_0wlir")
 
 [node name="Player" parent="." instance=ExtResource("1_7knku")]
-position = Vector2(254, 38)
-motion_mode = 1
+z_index = 1
+position = Vector2(-47, -41)
 
-[node name="Dummy" parent="." instance=ExtResource("2_gkiqh")]
-position = Vector2(154, 43)
+[node name="BACKGROUND" type="Node2D" parent="."]
+z_index = -5
 
-[node name="EnemyGhost" parent="." instance=ExtResource("3_2dnme")]
-position = Vector2(-153, 73)
+[node name="Parallax2D" type="Parallax2D" parent="BACKGROUND"]
+modulate = Color(0.310617, 0.310617, 0.310617, 1)
+z_index = -6
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(393.96, 221.52)
+repeat_times = 100
 
-[node name="EnemyGhost2" parent="." instance=ExtResource("3_2dnme")]
-position = Vector2(-84, 257)
-
-[node name="EnemyGhost3" parent="." instance=ExtResource("3_2dnme")]
-position = Vector2(-156, -89)
+[node name="Ground" type="Sprite2D" parent="BACKGROUND/Parallax2D"]
+texture = ExtResource("3_iflv6")

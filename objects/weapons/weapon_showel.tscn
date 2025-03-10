@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://buk5elfgdrff5"]
+
+[ext_resource type="Script" uid="uid://b1p5om0a6cpr0" path="res://scripts/weapons/Weapon.gd" id="1_y2lwh"]
+[ext_resource type="Texture2D" uid="uid://bplt24nel3rcw" path="res://assets/items/self-made/weapon_showel.png" id="2_vqr2i"]
+[ext_resource type="Script" uid="uid://bfy3hlldu5rli" path="res://objects/weapons/stuff/melee_damager.gd" id="3_vqr2i"]
+
+[node name="weapon_showel" type="Node2D" node_paths=PackedStringArray("sprite")]
+z_index = 1
+script = ExtResource("1_y2lwh")
+damage = 50.0
+fire_rate = 0.4
+position_offset = Vector2(10, 0)
+is_automatic = true
+recoil_distance = -40.0
+recoil_duration = 0.01
+recover_duration = 0.2
+damage_type = 1
+sprite = NodePath("sprite")
+metadata/_custom_type_script = "uid://b1p5om0a6cpr0"
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_vqr2i")
+
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("weapon")]
+script = ExtResource("3_vqr2i")
+weapon = NodePath("..")
+attack_cooldown = 0.3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(5, -5, 14, -5, 18, 0, 15, 6, 5, 6)

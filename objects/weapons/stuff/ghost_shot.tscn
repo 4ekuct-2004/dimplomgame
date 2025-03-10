@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dix6wrcv0xpc2"]
 
-[ext_resource type="Script" uid="uid://dq6gdf1vob26v" path="res://scripts/weapons/Projectile.gd" id="1_76n5v"]
+[ext_resource type="Script" uid="uid://dq6gdf1vob26v" path="res://scripts/weapons/Projectile.gd" id="1_ee0bs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wohhi"]
 radius = 4.0
@@ -30,7 +30,7 @@ color = Color(0.786742, 0.000484195, 0.787353, 1)
 color_ramp = SubResource("GradientTexture1D_76n5v")
 
 [node name="GhostShot" type="Area2D"]
-script = ExtResource("1_76n5v")
+script = ExtResource("1_ee0bs")
 speed = 200.0
 metadata/_custom_type_script = "uid://dq6gdf1vob26v"
 

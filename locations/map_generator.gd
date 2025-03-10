@@ -1,23 +1,26 @@
-extends TileMapLayer
+extends Node2D
+class_name MapGenerator
 
 var map_size := Vector2i(40, 40)
 var map: Array = []
 var vertical_segments: Array = []
 var horizontal_segments: Array = []
 
+var init_position: Vector2
+
+var deadzone: Array[Vector2i]
+
 @export var max_length: int = 20
 @export var required_corridors: int = 30
 @export var max_attempts: int = 1000
 @export var min_distance: int = 3
 
-func _ready() -> void:
-	generate_map()
-	update_tiles()
-
-func generate_map() -> void:
+func generate_map():
 	_init_map()
+	get_deadzone()
 	_create_initial_corridors()
 	_generate_additional_corridors()
+	return map
 
 func _init_map() -> void:
 	map = []
@@ -26,26 +29,42 @@ func _init_map() -> void:
 		map[x].resize(map_size.y)
 		for y in map_size.y:
 			map[x][y] = ' '
+	
+
+func get_deadzone():
+	var deadzone = []
+	var rows = map.size()
+	if rows == 0:
+		return deadzone
+	var cols = map[0].size()
+	
+	for x in range(cols):
+		deadzone.append(Vector2(x, 0))
+		deadzone.append(Vector2(x, rows - 1))
+	
+	for y in range(1, rows - 1): 
+		deadzone.append(Vector2(0, y)) 
+		deadzone.append(Vector2(cols - 1, y)) 
 
 func _create_initial_corridors() -> void:
-	var mid = map_size / 2 - Vector2i(1,1)
+	var mid = Vector2(randi_range(1,map_size.x - 1), randi_range(1,map_size.y - 1))
+	init_position = mid
 	
-	# Vertical corridor
 	vertical_segments.append({
-		"start": Vector2i(mid.x, 0),
-		"end": Vector2i(mid.x, map_size.y-1)
+		"start": Vector2i(mid.x, 1),
+		"end": Vector2i(mid.x, map_size.y-2)
 	})
-	
-	# Horizontal corridor
+
 	horizontal_segments.append({
-		"start": Vector2i(0, mid.y),
-		"end": Vector2i(map_size.x-1, mid.y)
+		"start": Vector2i(1, mid.y),
+		"end": Vector2i(map_size.x-2, mid.y)
 	})
 	
 	for y in map_size.y:
 		map[mid.x][y] = 'C'
 	for x in map_size.x:
 		map[x][mid.y] = 'C'
+	map[mid.x][mid.y] = 'S'
 
 func _generate_additional_corridors() -> void:
 	var attempts = 0
@@ -103,6 +122,7 @@ func _build_corridor(start: Vector2i, corridor_type: String, direction: Vector2i
 	
 	for _i in range(length-1):
 		current += direction
+		if deadzone.has(current): return cells
 		
 		if not _is_in_bounds(current): break
 		if not _check_distance(current, corridor_type): return []
@@ -147,10 +167,3 @@ func _register_corridor(cells: Array, corridor_type: String) -> void:
 	
 	for cell in cells:
 		map[cell.x][cell.y] = 'C'
-
-func update_tiles() -> void:
-	for x in map_size.x:
-		for y in map_size.y:
-			match map[x][y]:
-				'C': 
-					set_cell(Vector2(x,y), 1, Vector2(0,0))

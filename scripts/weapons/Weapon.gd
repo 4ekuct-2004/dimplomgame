@@ -17,12 +17,12 @@ class_name Weapon
 
 @export var y_muzzle_compensator = 0
 
-@export var damage_type: Modifier.DamageTypes
+@export var damage_type: Modifier.InputTypes
 
-@onready var sprite = $sprite
-@onready var muzzle: Marker2D = $muzzle
-@onready var particles_muzzleflash = $muzzle/particles_muzzleflash
-@onready var particles_smoke = $muzzle/particles_smoke
+@export var sprite : Sprite2D
+@export var muzzle: Marker2D 
+@export var particles_muzzleflash : GPUParticles2D
+@export var particles_smoke : GPUParticles2D
 
 var can_shoot: bool = true
 var _timer: Timer
@@ -41,14 +41,15 @@ func _ready():
 	add_child(_timer)
 	_base_rotation = rotation
 	_base_offset = position_offset
-	_base_muzzle_pos = muzzle.position
+	
+	if projectile_scene: _base_muzzle_pos = muzzle.position
 
 func update_aim(mouse_position: Vector2, character_position: Vector2, character_velocity: Vector2):
 	var direction = (mouse_position - character_position).normalized()
 	var is_facing_left = direction.x < 0
 	var corrected_offset = _base_offset
 	
-	if sprite:
+	if muzzle and sprite:
 		sprite.flip_v = is_facing_left
 		if is_facing_left:
 			corrected_offset.y = -_base_offset.y
@@ -72,14 +73,11 @@ func shoot(shooter: Node, trigger_pressed: bool):
 
 func _perform_shoot(shooter: Node):
 	can_shoot = false
-	particles_muzzleflash.emitting = true
-	particles_smoke.emitting = true
 	
 	var current_spread = base_spread_angle + shooter_velocity.length() * movement_spread_multiplier
 	current_spread = clamp(current_spread, 0.0, max_spread_angle)
 	var spread_angle = randf_range(-current_spread, current_spread)
 	
-	var projectile = projectile_scene.instantiate()
 	var shoot_direction = Vector2.RIGHT.rotated(rotation + spread_angle)
 	var inherited_velocity = shooter_velocity * velocity_inheritance
 	
@@ -87,15 +85,18 @@ func _perform_shoot(shooter: Node):
 	for mod in shooter.attack_mods:
 		newdmg = mod.modify(newdmg, damage_type)
 	
-	projectile.global_position = muzzle.global_position
-	projectile.initialize(
-		shoot_direction * projectile_speed + inherited_velocity,
-		newdmg,
-		shooter
-	)
-	get_tree().root.add_child(projectile)
+	if projectile_scene:
+		if particles_muzzleflash: particles_muzzleflash.emitting = true
+		if particles_smoke: particles_smoke.emitting = true
+		var projectile = projectile_scene.instantiate()
+		projectile.global_position = muzzle.global_position
+		projectile.initialize(
+			shoot_direction * projectile_speed + inherited_velocity,
+			newdmg,
+			shooter
+		)
+		get_tree().root.add_child(projectile)
 	
-	# Анимация отдачи только визуального смещения
 	var recoil_tween = create_tween()
 	recoil_tween.set_parallel(true)
 	recoil_tween.tween_property(self, "_current_recoil_offset", 

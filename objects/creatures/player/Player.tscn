@@ -1,7 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2l6768tqck1b"]
+[gd_scene load_steps=25 format=3 uid="uid://c2l6768tqck1b"]
 
 [ext_resource type="Script" uid="uid://5ptsdex6ax0v" path="res://scripts/entities/creatures/player/player.gd" id="1_4glcb"]
 [ext_resource type="Texture2D" uid="uid://comgollsv72of" path="res://assets/characters/Characters(100x100)/Soldier/Soldier/Soldier.png" id="2_mtxv6"]
+[ext_resource type="Texture2D" uid="uid://tt57eqdx8dfr" path="res://assets/characters/Characters(100x100)/Soldier/Soldier/head.png" id="3_5txwa"]
+[ext_resource type="Script" uid="uid://bmoqe2pifurb6" path="res://gui/interface/interface.gd" id="3_ebsa6"]
+[ext_resource type="Texture2D" uid="uid://cwicntlt56gju" path="res://assets/items/GunsPack/Guns/AK47.png" id="5_vot4i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1jq3f"]
 atlas = ExtResource("2_mtxv6")
@@ -93,10 +96,39 @@ height = 20.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5suim"]
 radius = 9.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swlsi"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_5txwa"]
+offsets = PackedFloat32Array(0, 0.00704225)
+colors = PackedColorArray(0, 0, 0, 1, 0.270222, 0.270222, 0.270222, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ebsa6"]
+gradient = SubResource("Gradient_5txwa")
+width = 100
+
+[sub_resource type="Gradient" id="Gradient_vot4i"]
+colors = PackedColorArray(0.481273, 1.09497e-06, 2.40654e-07, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_asm2g"]
+gradient = SubResource("Gradient_vot4i")
+width = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vot4i"]
+bg_color = Color(0.0923971, 0.0923971, 0.092397, 1)
+
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+motion_mode = 1
 script = ExtResource("1_4glcb")
-metadata/_edit_vertical_guides_ = [-10.0, 10.0]
-metadata/_edit_horizontal_guides_ = [12.0, -20.0]
+base_stats = {
+&"armor": 0,
+&"max_hp": 100,
+&"move_speed": 10000
+}
+metadata/_edit_vertical_guides_ = [-250.0, 250.0]
+metadata/_edit_horizontal_guides_ = [120.0, -120.0]
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -104,12 +136,11 @@ texture_repeat = 1
 position = Vector2(-2, -3)
 scale = Vector2(1.94932, 2.10737)
 sprite_frames = SubResource("SpriteFrames_jbdgs")
-animation = &"walk"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.51459
 
 [node name="collision_box" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
+position = Vector2(0, 9)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_4jgda")
 
@@ -121,3 +152,58 @@ shape = SubResource("CapsuleShape2D_5suim")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+
+[node name="INTERFACE" type="Control" parent="." node_paths=PackedStringArray("player")]
+z_index = 10
+layout_direction = 4
+layout_mode = 3
+anchors_preset = 0
+offset_left = -288.0
+offset_top = -162.0
+offset_right = 288.0
+offset_bottom = 162.0
+script = ExtResource("3_ebsa6")
+player = NodePath("..")
+
+[node name="FACE" type="Panel" parent="INTERFACE"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 51.0
+offset_bottom = 42.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_swlsi")
+
+[node name="Head" type="Sprite2D" parent="INTERFACE/FACE"]
+texture_filter = 1
+position = Vector2(25.125, 21)
+scale = Vector2(3.35, 2.7964)
+texture = ExtResource("3_5txwa")
+
+[node name="HEALTH" type="TextureProgressBar" parent="INTERFACE"]
+layout_mode = 0
+offset_left = 51.0
+offset_right = 169.0
+offset_bottom = 10.0
+value = 100.0
+rounded = true
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture1D_ebsa6")
+texture_progress = SubResource("GradientTexture1D_asm2g")
+
+[node name="WEAPON" type="Panel" parent="INTERFACE"]
+layout_mode = 0
+offset_top = 42.0
+offset_right = 51.0
+offset_bottom = 84.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vot4i")
+
+[node name="CURRENT" type="TextureRect" parent="INTERFACE/WEAPON"]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 42.0
+
+[node name="Ak47" type="Sprite2D" parent="INTERFACE/WEAPON"]
+texture_filter = 1
+position = Vector2(27.607, 20.8275)
+rotation = -0.523598
+scale = Vector2(1.77263, 1.529)
+texture = ExtResource("5_vot4i")

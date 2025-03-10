@@ -152,10 +152,9 @@ color_ramp = SubResource("GradientTexture1D_w35mq")
 
 [node name="EnemyGhost" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "vision_area", "hitbox", "collision", "blood_particles")]
 script = ExtResource("1_e7s50")
-attack_type = 1
 behavior_type = 1
 circle_speed = 100.0
-circle_radius = 100.0
+circle_radius = 300.0
 retreat_multiplier = 0.7
 animated_sprite = NodePath("sprite")
 vision_area = NodePath("vision_radius")
@@ -188,6 +187,8 @@ animation = &"dead"
 autoplay = "idle"
 
 [node name="vision_radius" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="vision" type="CollisionShape2D" parent="vision_radius"]
 position = Vector2(0, -4)

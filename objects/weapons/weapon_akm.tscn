@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://q4gtpus0jqf2"]
 
 [ext_resource type="Script" uid="uid://b1p5om0a6cpr0" path="res://scripts/weapons/Weapon.gd" id="1_ar7oe"]
-[ext_resource type="PackedScene" uid="uid://dynplnhncq8ux" path="res://objects/weapons/projectiles/bullet.tscn" id="2_7gemr"]
+[ext_resource type="PackedScene" uid="uid://dynplnhncq8ux" path="res://objects/weapons/stuff/bullet.tscn" id="2_7gemr"]
 [ext_resource type="Texture2D" uid="uid://cwicntlt56gju" path="res://assets/items/GunsPack/Guns/AK47.png" id="2_fuehk"]
 
 [sub_resource type="Gradient" id="Gradient_x8o5u"]
@@ -25,7 +25,7 @@ initial_velocity_max = 10.75
 gravity = Vector3(0, -30, 0)
 color = Color(0.281187, 0.281187, 0.281187, 1)
 
-[node name="weapon_akm" type="Node2D"]
+[node name="weapon_akm" type="Node2D" node_paths=PackedStringArray("sprite", "muzzle", "particles_muzzleflash", "particles_smoke")]
 script = ExtResource("1_ar7oe")
 fire_rate = 0.1
 projectile_speed = 800.0
@@ -35,6 +35,10 @@ is_automatic = true
 recoil_distance = 2.0
 base_spread_angle = 0.03
 y_muzzle_compensator = 4
+sprite = NodePath("sprite")
+muzzle = NodePath("muzzle")
+particles_muzzleflash = NodePath("muzzle/particles_muzzleflash")
+particles_smoke = NodePath("muzzle/particles_smoke")
 metadata/_edit_vertical_guides_ = [-49.8318, 50.0673]
 metadata/_edit_horizontal_guides_ = [-50.2666, 50.4743]
 
