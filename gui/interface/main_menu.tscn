@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://rw3b46hf8ngu"]
+
+[ext_resource type="Script" uid="uid://ckvc18223qe6h" path="res://scripts/gui/main_menu.gd" id="1_tqjj4"]
+[ext_resource type="FontFile" uid="uid://cxyiu3ubs3vgs" path="res://assets/gui/fonts/Uni Sans Thin Italic.otf" id="2_3qeuv"]
+[ext_resource type="Texture2D" uid="uid://dmgh7iusnvsjj" path="res://assets/locations/GROUND.png" id="3_3qeuv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hotq"]
+bg_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_84rd5"]
+font = ExtResource("2_3qeuv")
+font_size = 46
+outline_size = 11
+
+[node name="MAIN_MENU" type="Node2D"]
+script = ExtResource("1_tqjj4")
+metadata/_edit_vertical_guides_ = [1152.0]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 326.0
+offset_top = -6.0
+offset_right = 826.0
+offset_bottom = 712.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3hotq")
+
+[node name="START_GAME" type="Button" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 75.0
+offset_top = 162.0
+offset_right = -75.0
+offset_bottom = 212.0
+grow_horizontal = 2
+text = "НАЧАТЬ ИГРУ"
+
+[node name="SETTINGS" type="Button" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 100.0
+offset_top = 232.0
+offset_right = -100.0
+offset_bottom = 282.0
+grow_horizontal = 2
+text = "НАСТРОЙКИ"
+
+[node name="EXIT" type="Button" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 100.0
+offset_top = 301.0
+offset_right = -100.0
+offset_bottom = 351.0
+grow_horizontal = 2
+text = "ВЫХОД"
+
+[node name="Label" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 75.0
+offset_right = 425.0
+offset_bottom = 143.0
+text = "Endless Storm"
+label_settings = SubResource("LabelSettings_84rd5")
+horizontal_alignment = 1
+
+[node name="BACKGROUND" type="Node2D" parent="."]
+z_index = -5
+
+[node name="Parallax2D" type="Parallax2D" parent="BACKGROUND"]
+modulate = Color(0.310617, 0.310617, 0.310617, 1)
+z_index = -6
+repeat_size = Vector2(393.96, 221.52)
+autoscroll = Vector2(0, 50)
+repeat_times = 5
+
+[node name="Ground" type="Sprite2D" parent="BACKGROUND/Parallax2D"]
+position = Vector2(199, 111)
+texture = ExtResource("3_3qeuv")
+
+[connection signal="pressed" from="Control/Panel/START_GAME" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Control/Panel/SETTINGS" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Control/Panel/EXIT" to="." method="_on_exit_pressed"]

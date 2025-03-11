@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="DimplomGame"
-run/main_scene="uid://bg0j8hv07riog"
+run/main_scene="uid://rw3b46hf8ngu"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [input]
