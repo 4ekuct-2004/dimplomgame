@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bg0j8hv07riog"]
 
-[ext_resource type="Script" uid="uid://c7f8o3qdf25jm" path="res://debug/full/main.gd" id="1_0wlir"]
+[ext_resource type="Script" uid="uid://c7f8o3qdf25jm" path="res://locations/main_game/main.gd" id="1_0wlir"]
 [ext_resource type="PackedScene" uid="uid://c2l6768tqck1b" path="res://objects/creatures/player/Player.tscn" id="1_7knku"]
 [ext_resource type="Texture2D" uid="uid://dmgh7iusnvsjj" path="res://assets/locations/GROUND.png" id="3_iflv6"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ds402bbyluby"]
 
 [ext_resource type="Script" uid="uid://b1p5om0a6cpr0" path="res://scripts/weapons/Weapon.gd" id="1_vbds6"]
-[ext_resource type="Script" uid="uid://bfy3hlldu5rli" path="res://objects/weapons/stuff/melee_damager.gd" id="2_l5ojy"]
+[ext_resource type="Script" uid="uid://bfy3hlldu5rli" path="res://scripts/weapons/melee_damager.gd" id="2_l5ojy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_leys4"]
 bg_color = Color(0.172833, 0.172833, 0.172833, 1)
@@ -27,7 +27,7 @@ gravity = Vector3(0, 0, 0)
 color = Color(0.786742, 0.000484195, 0.787353, 1)
 color_ramp = SubResource("GradientTexture1D_76n5v")
 
-[node name="GhostHand" type="Node2D" node_paths=PackedStringArray("muzzle")]
+[node name="GhostHand" type="Node2D"]
 script = ExtResource("1_vbds6")
 damage = 5.0
 projectile_speed = 150.0
@@ -35,7 +35,6 @@ position_offset = Vector2(5, 0)
 is_automatic = true
 recoil_distance = -30.0
 damage_type = 2
-muzzle = NodePath("")
 metadata/_custom_type_script = "uid://b1p5om0a6cpr0"
 
 [node name="Panel" type="Panel" parent="."]
@@ -47,9 +46,8 @@ offset_bottom = 6.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_leys4")
 metadata/_edit_use_anchors_ = true
 
-[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("weapon")]
+[node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("2_l5ojy")
-weapon = NodePath("")
 attack_cooldown = 0.3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]

@@ -53,9 +53,9 @@ func _on_death() -> void:
 	alive = false
 	animated_sprite.play("dead")
 	behavior_type = BehaviorType.DEFAULT
-	weapon.queue_free()
+	if weapon: weapon.queue_free()
+	if hitbox: hitbox.queue_free()
 	collision.queue_free()
-	hitbox.queue_free()
 
 func moving_process(delta: float) -> void:
 	if velocity.length() > 0:

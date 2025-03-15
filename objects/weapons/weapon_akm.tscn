@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b1p5om0a6cpr0" path="res://scripts/weapons/Weapon.gd" id="1_ar7oe"]
 [ext_resource type="PackedScene" uid="uid://dynplnhncq8ux" path="res://objects/weapons/stuff/bullet.tscn" id="2_7gemr"]
-[ext_resource type="Texture2D" uid="uid://cwicntlt56gju" path="res://assets/items/GunsPack/Guns/AK47.png" id="2_fuehk"]
+[ext_resource type="Texture2D" uid="uid://cwicntlt56gju" path="res://assets/items/weapons/Guns/AK47.png" id="2_fuehk"]
 
 [sub_resource type="Gradient" id="Gradient_x8o5u"]
 colors = PackedColorArray(1, 1, 0, 1, 0.835718, 3.22476e-06, 7.70092e-07, 1)

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://buk5elfgdrff5"]
 
 [ext_resource type="Script" uid="uid://b1p5om0a6cpr0" path="res://scripts/weapons/Weapon.gd" id="1_y2lwh"]
-[ext_resource type="Texture2D" uid="uid://bplt24nel3rcw" path="res://assets/items/self-made/weapon_showel.png" id="2_vqr2i"]
-[ext_resource type="Script" uid="uid://bfy3hlldu5rli" path="res://objects/weapons/stuff/melee_damager.gd" id="3_vqr2i"]
+[ext_resource type="Texture2D" uid="uid://bplt24nel3rcw" path="res://assets/items/weapons/melee/weapon_showel.png" id="2_vqr2i"]
+[ext_resource type="Script" uid="uid://bfy3hlldu5rli" path="res://scripts/weapons/melee_damager.gd" id="3_vqr2i"]
 
 [node name="weapon_showel" type="Node2D" node_paths=PackedStringArray("sprite")]
 z_index = 1

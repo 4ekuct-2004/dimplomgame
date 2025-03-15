@@ -1,7 +1,7 @@
 extends Node2D
 class_name MapGenerator
 
-var map_size := Vector2i(40, 40)
+var map_size := Vector2i(10, 10)
 var map: Array = []
 var vertical_segments: Array = []
 var horizontal_segments: Array = []
@@ -9,6 +9,8 @@ var horizontal_segments: Array = []
 var init_position: Vector2
 
 var deadzone: Array[Vector2i]
+
+var s_pos: Vector2
 
 @export var max_length: int = 20
 @export var required_corridors: int = 30
@@ -65,6 +67,7 @@ func _create_initial_corridors() -> void:
 	for x in map_size.x:
 		map[x][mid.y] = 'C'
 	map[mid.x][mid.y] = 'S'
+	s_pos = Vector2(mid.x, mid.y)
 
 func _generate_additional_corridors() -> void:
 	var attempts = 0

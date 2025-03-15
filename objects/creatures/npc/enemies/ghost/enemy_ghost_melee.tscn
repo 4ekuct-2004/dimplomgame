@@ -1,8 +1,8 @@
 [gd_scene load_steps=23 format=3 uid="uid://frb012hxjpum"]
 
-[ext_resource type="Script" uid="uid://dl4n4sa8mklho" path="res://objects/creatures/npc/enemies/Enemy.gd" id="1_im01o"]
+[ext_resource type="Script" uid="uid://dl4n4sa8mklho" path="res://scripts/entities/creatures/npc/Enemy.gd" id="1_im01o"]
 [ext_resource type="PackedScene" uid="uid://ds402bbyluby" path="res://objects/weapons/ghost_hand_melee.tscn" id="2_tiotc"]
-[ext_resource type="Texture2D" uid="uid://cw5x7jx87p3dd" path="res://assets/characters/Characters(100x100)/Soldier/Soldier/ghost.png" id="3_ka7n0"]
+[ext_resource type="Texture2D" uid="uid://cw5x7jx87p3dd" path="res://assets/characters/hero/ghost.png" id="3_ka7n0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3fwu6"]
 radius = 8.0

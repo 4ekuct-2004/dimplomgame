@@ -5,7 +5,7 @@ var map_generator = MapGenerator.new()
 var map_builder = MapBuilder.new()
 
 @onready var player = $Player
-var enemies = load("res://objects/creatures/npc/enemies/ghost/enemy_ghost.tscn")
+var enemy = load("res://objects/creatures/npc/enemies/ghost/enemy_ghost.tscn")
 
 var paused = false
 signal pause
@@ -17,6 +17,10 @@ func _ready() -> void:
 	player.position = map_builder.start_position
 	print(player.position)
 	pause.connect(on_pause)
+	
+	var e = enemy.instantiate()
+	add_child(e)
+	e.position = Vector2(player.position.x + 200, player.position.y)
 
 
 func on_pause():

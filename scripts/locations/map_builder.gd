@@ -12,6 +12,8 @@ var segments = {
 
 var deadend_positions = []
 var start_position = Vector2.ZERO
+var start_pos_finded = false
+
 var _world
 
 const directions = [Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT]
@@ -20,6 +22,7 @@ func generate_from_map(map_array, world):
 	_world = world
 	deadend_positions.clear()
 	start_position = Vector2.ZERO
+	var plased_corridors = 0
 	
 	for y in range(map_array.size()):
 		for x in range(map_array[y].size()):
@@ -27,17 +30,21 @@ func generate_from_map(map_array, world):
 			var grid_pos = Vector2(x, y)
 			
 			if cell == "C":
+				if not start_pos_finded: start_position = grid_pos * segment_size
+				plased_corridors += 1
 				var connections = check_connections(grid_pos, map_array)
 				var segment_data = determine_segment(connections)
 				place_segment(segment_data, grid_pos)
 				
 			elif cell == "S":
+				plased_corridors += 1
+				start_position = grid_pos * segment_size
+				start_pos_finded = true
 				var segment_data = {
 					"type": "plus_type",
 					"rotation": 0 
 				}
 				place_segment(segment_data, grid_pos)
-				start_position = grid_pos * segment_size
 
 func check_connections(pos, map):
 	var connections = []

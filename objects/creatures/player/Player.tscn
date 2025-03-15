@@ -1,10 +1,10 @@
 [gd_scene load_steps=25 format=3 uid="uid://c2l6768tqck1b"]
 
 [ext_resource type="Script" uid="uid://5ptsdex6ax0v" path="res://scripts/entities/creatures/player/player.gd" id="1_4glcb"]
-[ext_resource type="Texture2D" uid="uid://comgollsv72of" path="res://assets/characters/Characters(100x100)/Soldier/Soldier/Soldier.png" id="2_mtxv6"]
-[ext_resource type="Texture2D" uid="uid://tt57eqdx8dfr" path="res://assets/characters/Characters(100x100)/Soldier/Soldier/head.png" id="3_5txwa"]
-[ext_resource type="Script" uid="uid://bmoqe2pifurb6" path="res://gui/interface/interface.gd" id="3_ebsa6"]
-[ext_resource type="Texture2D" uid="uid://cwicntlt56gju" path="res://assets/items/GunsPack/Guns/AK47.png" id="5_vot4i"]
+[ext_resource type="Texture2D" uid="uid://comgollsv72of" path="res://assets/characters/hero/Soldier.png" id="2_mtxv6"]
+[ext_resource type="Texture2D" uid="uid://tt57eqdx8dfr" path="res://assets/characters/hero/head.png" id="3_5txwa"]
+[ext_resource type="Script" uid="uid://bmoqe2pifurb6" path="res://scripts/gui/HUD.gd" id="3_ebsa6"]
+[ext_resource type="Texture2D" uid="uid://cwicntlt56gju" path="res://assets/items/weapons/Guns/AK47.png" id="5_vot4i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1jq3f"]
 atlas = ExtResource("2_mtxv6")
@@ -90,7 +90,6 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4jgda"]
-radius = 8.0
 height = 28.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5suim"]
@@ -132,6 +131,7 @@ metadata/_edit_vertical_guides_ = [-250.0, 250.0]
 metadata/_edit_horizontal_guides_ = [120.0, -120.0]
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
+z_index = -1
 texture_filter = 1
 texture_repeat = 1
 position = Vector2(-2, -3)

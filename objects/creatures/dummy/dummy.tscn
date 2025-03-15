@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d36ppgx04srlx"]
 
 [ext_resource type="Script" uid="uid://c5vivrham771n" path="res://objects/creatures/dummy/dummy.gd" id="1_naa24"]
-[ext_resource type="Texture2D" uid="uid://chhqa4u6c7oct" path="res://assets/klipartz.com.png" id="2_cu3dc"]
+[ext_resource type="Texture2D" uid="uid://dscatksvp828m" path="res://assets/emo_texture.png" id="2_uxskt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_npc75"]
 radius = 3.63693
@@ -26,11 +26,12 @@ hue_variation_max = -2.23517e-08
 [node name="Dummy" type="CharacterBody2D"]
 scale = Vector2(2.74957, 2.74957)
 script = ExtResource("1_naa24")
+NAME = "dummy"
 
 [node name="Klipartz_com" type="Sprite2D" parent="."]
-position = Vector2(-4.76837e-07, 0)
-scale = Vector2(0.0131642, 0.0131642)
-texture = ExtResource("2_cu3dc")
+position = Vector2(0, 0.181847)
+scale = Vector2(0.0363693, 0.0781941)
+texture = ExtResource("2_uxskt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_npc75")
